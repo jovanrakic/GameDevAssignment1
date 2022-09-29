@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.010384092, g: 0.010610979, b: 0.01400178, a: 1}
+  m_IndirectSpecularColor: {r: 0.010384084, g: 0.010610966, b: 0.014001759, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -7292,7 +7292,7 @@ GameObject:
   - component: {fileID: 239708007}
   - component: {fileID: 239708006}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25284,7 +25284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac9e174f444ccf42b7ec94d639e0e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curTime: 300
+  curTime: 10
   min: 0
   sec: 0
   miliSec: 0
@@ -42653,7 +42653,7 @@ GameObject:
   - component: {fileID: 1721686396}
   - component: {fileID: 1721686395}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CrosshairCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46187,7 +46187,7 @@ GameObject:
   - component: {fileID: 1860841759}
   - component: {fileID: 1860841758}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
