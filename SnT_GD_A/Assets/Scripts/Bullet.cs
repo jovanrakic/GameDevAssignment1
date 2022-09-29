@@ -16,7 +16,11 @@ public class Bullet : MonoBehaviour
     void Start()
     {
 	bulletRigidbody.velocity = transform.forward *speed;
-    enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SimpleFSM>();
+    GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+    if (enemyObject != null)
+        {
+        enemy = enemyObject.GetComponent<SimpleFSM>();
+        }
     }
     
     
