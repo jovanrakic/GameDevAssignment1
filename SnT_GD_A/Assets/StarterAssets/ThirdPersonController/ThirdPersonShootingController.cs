@@ -19,9 +19,11 @@ public class ThirdPersonShootingController : MonoBehaviour{
 	
 
 	private StarterAssetsInputs starterAssetsInputs;
+	private ThirdPersonController thirdPersonController;
 
 	private void Awake(){
 		starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+		thirdPersonController = GetComponent<ThirdPersonController>();
 		laser_01 = GetComponent<AudioSource>();
 	}
 
@@ -35,6 +37,7 @@ public class ThirdPersonShootingController : MonoBehaviour{
 		}
 		if (starterAssetsInputs.aim){
 			aiming = true;
+			thirdPersonController.RotateOnAim(false);
 			aimVirtualCamera.gameObject.SetActive(true);
 			animator.SetBool("Aiming", true);
 			Vector3 worldAimTarget = mouseWorldPosition;
@@ -42,12 +45,13 @@ public class ThirdPersonShootingController : MonoBehaviour{
 			Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
 
-			transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+			transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f); // Turns player to target
 			
 		}else{
 			aiming = false;
 			aimVirtualCamera.gameObject.SetActive(false);
 			animator.SetBool("Aiming", false);
+			thirdPersonController.RotateOnAim(true);
 		}
 
 		if (starterAssetsInputs.shoot && aiming == true){

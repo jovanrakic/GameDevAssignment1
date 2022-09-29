@@ -4161,8 +4161,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &143282329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23398,9 +23398,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.9275396
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.0757953, z: 0}
 --- !u!82 &954496244
 AudioSource:
   m_ObjectHideFlags: 0
@@ -23421,7 +23421,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.36601526
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

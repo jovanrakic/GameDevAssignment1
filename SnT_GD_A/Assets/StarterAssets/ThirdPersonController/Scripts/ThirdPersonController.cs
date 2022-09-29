@@ -106,7 +106,7 @@ namespace StarterAssets
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
-
+        private bool rotationOnAim = true;
         private bool _hasAnimator;
 
         private bool IsCurrentDeviceMouse
@@ -261,7 +261,11 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                if (rotationOnAim)
+                {
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
+                
             }
 
 
@@ -383,6 +387,10 @@ namespace StarterAssets
             }
         }
 
+        public void RotateOnAim(bool newRotateOnAim)
+        {
+            rotationOnAim = newRotateOnAim;
+        }
         private void OnLand(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
