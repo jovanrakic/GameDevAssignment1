@@ -26,8 +26,8 @@ public class Bullet : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-         if (other.gameObject.tag == "Enemy") {
-        enemy.ApplyDamage(10);
+        if (other.gameObject.tag == "Enemy") {
+            enemy.ApplyDamage(10);
         }
     Destroy(gameObject);
     }
