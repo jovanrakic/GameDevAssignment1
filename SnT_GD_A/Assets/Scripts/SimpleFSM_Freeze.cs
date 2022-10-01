@@ -105,7 +105,7 @@ public class SimpleFSM_Freeze : MonoBehaviour
             }
             else
             {
-                currentWaypoint = 3;
+                currentWaypoint = 0;
             }
         
         }
