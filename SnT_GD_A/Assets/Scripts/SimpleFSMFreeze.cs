@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
-public class SimpleFSM_Freeze : MonoBehaviour 
+public class SimpleFSMFreeze : MonoBehaviour 
 {
     public enum FSMFState
     {

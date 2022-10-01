@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     private Rigidbody bulletRigidbody;
     public float speed = 10f;
     private SimpleFSM enemy;
+    private SimpleFSMFreeze enemy_freeze;
+    private bool isFreeze;
     void Awake()
     {
 	bulletRigidbody= GetComponent<Rigidbody>();
@@ -20,6 +22,15 @@ public class Bullet : MonoBehaviour
     if (enemyObject != null)
         {
         enemy = enemyObject.GetComponent<SimpleFSM>();
+        if (enemy == null)
+            {
+            enemy_freeze = enemyObject.GetComponent<SimpleFSMFreeze>();
+            isFreeze = true;
+            }
+        }
+    else 
+        {
+        Debug.Log("EnemyObject not found");
         }
     }
     
@@ -27,7 +38,12 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy") {
-            enemy.ApplyDamage(10);
+            if (isFreeze){
+                enemy_freeze.ApplyDamage(10);
+            }
+            else{
+                enemy.ApplyDamage(10);
+            }
         }
     Destroy(gameObject);
     }
