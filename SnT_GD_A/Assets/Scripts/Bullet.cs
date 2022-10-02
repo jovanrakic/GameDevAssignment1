@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     private SimpleFSM enemy;
     private SimpleFSMFreeze enemy_freeze;
     private bool isFreeze;
+    public GameObject enemyImpact;
+    public GameObject generalImpact;
     void Awake()
     {
 	bulletRigidbody= GetComponent<Rigidbody>();
@@ -38,12 +40,15 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy") {
+        Instantiate(enemyImpact, transform.position, transform.rotation);
             if (isFreeze){
                 enemy_freeze.ApplyDamage(10);
             }
             else{
                 enemy.ApplyDamage(10);
             }
+        } else {
+            Instantiate(generalImpact, transform.position, transform.rotation);
         }
     Destroy(gameObject);
     }
