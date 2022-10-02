@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyFreezeBullet : MonoBehaviour
+public class EnemyBulletFreeze : MonoBehaviour
 {
     //Explosion Effect
     public GameObject Explosion;
