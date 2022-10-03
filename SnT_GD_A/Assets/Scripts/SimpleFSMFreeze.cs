@@ -47,6 +47,9 @@ public class SimpleFSMFreeze : MonoBehaviour
 	public float attackRangeStop = 10.0f;
 
 	public GameObject explosion;
+    public UpdateScore remainingEnemies;
+
+    // public Rigidbody RigBod;
 
 
     /*
@@ -63,6 +66,11 @@ public class SimpleFSMFreeze : MonoBehaviour
         // Get the target enemy(Player)
         GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
         playerTransform = objPlayer.transform;
+        
+        remainingEnemies = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScore>();
+
+//        RigBod = GetComponent<Rigidbody>();
+//        RigBod.AddForce(1,1,1,ForceMode.Impulse);
 
         if(!playerTransform)
             print("Player doesn't exist.. Please add one with Tag named 'Player'");
@@ -84,8 +92,10 @@ public class SimpleFSMFreeze : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
         // Go to dead state if no health left
-        if (health <= 0)
+        if (health <= 0){
+            Debug.Log("Health: "+ health);
             curState = FSMFState.Dead;
+        }
     }
 
 	/*
@@ -195,6 +205,7 @@ public class SimpleFSMFreeze : MonoBehaviour
         if (!bDead) {
             bDead = true;
             Explode();
+            Debug.Log("Dead");
         }
     }
 
@@ -215,6 +226,7 @@ public class SimpleFSMFreeze : MonoBehaviour
     // Apply Damage if hit by bullet
     public void ApplyDamage(int damage ) {
     	health -= damage;
+        Debug.Log("enemy hit! health is now at: " + health);
     }
 
 
@@ -229,6 +241,7 @@ public class SimpleFSMFreeze : MonoBehaviour
 
 		Invoke ("CreateFinalExplosion", 1.4f);
 		Destroy(gameObject, 1.5f);
+        remainingEnemies.KilledEnemy();
 	}
 	
 	

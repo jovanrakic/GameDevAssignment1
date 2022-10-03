@@ -19,35 +19,32 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-	bulletRigidbody.velocity = transform.forward *speed;
-    GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
-    if (enemyObject != null)
-        {
-        enemy = enemyObject.GetComponent<SimpleFSM>();
-        if (enemy == null)
-            {
-            enemy_freeze = enemyObject.GetComponent<SimpleFSMFreeze>();
-            isFreeze = true;
-            }
-        }
-    else 
-        {
-        Debug.Log("EnemyObject not found");
-        }
+	    bulletRigidbody.velocity = transform.forward *speed;
     }
     
     
     void OnTriggerEnter(Collider other)
     {
+        GameObject enemyObject = other.gameObject;
+        if (enemyObject != null)
+        {
+            enemy = enemyObject.GetComponent<SimpleFSM>();
+            if (enemy == null)
+            {
+                enemy_freeze = enemyObject.GetComponent<SimpleFSMFreeze>();
+                isFreeze = true;
+            }
+        }
         if (other.gameObject.tag == "Enemy") {
-        Instantiate(enemyImpact, transform.position, transform.rotation);
+            Instantiate(enemyImpact, transform.position, transform.rotation);
             if (isFreeze){
                 enemy_freeze.ApplyDamage(10);
             }
             else{
                 enemy.ApplyDamage(10);
             }
-        } else {
+        } 
+        else {
             Instantiate(generalImpact, transform.position, transform.rotation);
         }
     Destroy(gameObject);

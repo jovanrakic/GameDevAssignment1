@@ -47,6 +47,7 @@ public class SimpleFSM : MonoBehaviour
 	public float attackRangeStop = 10.0f;
 
 	public GameObject explosion;
+    public UpdateScore remainingEnemies;
 
 
     /*
@@ -63,6 +64,8 @@ public class SimpleFSM : MonoBehaviour
         // Get the target enemy(Player)
         GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
         playerTransform = objPlayer.transform;
+
+        remainingEnemies = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScore>();
 
         if(!playerTransform)
             print("Player doesn't exist.. Please add one with Tag named 'Player'");
@@ -82,10 +85,11 @@ public class SimpleFSM : MonoBehaviour
         
         // Update the time
         elapsedTime += Time.deltaTime;
-
+        
         // Go to dead state if no health left
-        if (health <= 0)
+        if (health <= 0){
             curState = FSMState.Dead;
+        }
     }
 
 	/*
@@ -132,7 +136,7 @@ public class SimpleFSM : MonoBehaviour
         nav.SetDestination(playerTransform.transform.position);
         nav.isStopped = false;
 
-        Debug.Log(Vector3.Distance(transform.position, playerTransform.transform.position));
+        //Debug.Log(Vector3.Distance(transform.position, playerTransform.transform.position));
 
         // Transitions
         // Check the distance with player tank
@@ -195,6 +199,7 @@ public class SimpleFSM : MonoBehaviour
         if (!bDead) {
             bDead = true;
             Explode();
+            Debug.Log("Dead");
         }
     }
 
@@ -215,6 +220,7 @@ public class SimpleFSM : MonoBehaviour
     // Apply Damage if hit by bullet
     public void ApplyDamage(int damage ) {
     	health -= damage;
+        Debug.Log("enemy hit! health is now at: " + health);
     }
 
 
@@ -229,6 +235,7 @@ public class SimpleFSM : MonoBehaviour
 
 		Invoke ("CreateFinalExplosion", 1.4f);
 		Destroy(gameObject, 1.5f);
+        remainingEnemies.KilledEnemy();
 	}
 	
 	
