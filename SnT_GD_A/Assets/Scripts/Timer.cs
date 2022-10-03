@@ -69,7 +69,7 @@ public class Timer : MonoBehaviour
     }
 
     public void RestartGame() {
-        Debug.Log("Restart");
+        //Debug.Log("Restart");
         SceneManager.LoadScene("Main");
     }
     public void ApplyRewardPickup(){

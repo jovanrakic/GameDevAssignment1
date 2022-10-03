@@ -9,12 +9,14 @@ public class UpdateScore : MonoBehaviour
     public GameObject gameWonCanvas;
     public Text remainingEnemies;
     public Text gameWonText;
+    public Text timeText; 
 
-    public float enemiesLeft = 5;
-    public float timeUsed = 0;
-    public float min;
-    public float sec;
-    public float miliSec;
+    private float enemiesLeft = 5;
+    private float timeUsed = 0;
+    private float min;
+    private float sec;
+    private float miliSec;
+    private float mainMenuTimer = 5;
 
     void Start()
     {
@@ -27,6 +29,12 @@ public class UpdateScore : MonoBehaviour
         if (enemiesLeft == 0){
             UpdateWinText(timeUsed);
             gameWonCanvas.SetActive(true);
+            if (mainMenuTimer < 0){
+                SceneManager.LoadScene("TitlePage");
+            }
+            else{
+                mainMenuTimer -= Time.deltaTime;
+            }
         }
         else{
             UpdateScoreText();
@@ -47,7 +55,7 @@ public class UpdateScore : MonoBehaviour
         min = Mathf.FloorToInt(timeUsed / 60);
         sec = Mathf.FloorToInt(timeUsed % 60);
         miliSec = (timeUsed - Mathf.Floor(timeUsed))*1000;
-        gameWonText.text = string.Format("Game Won!\nTime used: {0:00}:{1:00}:{2:000}", min, sec, miliSec);
+        gameWonText.text = string.Format("Game Won!\n Your time was:\n{0:00}:{1:00}:{2:000}", min, sec, miliSec);
     }
     
 }

@@ -34,8 +34,6 @@ public class EnemyBullet : MonoBehaviour
 				if (Explosion)
 					Instantiate(Explosion, hit.point, Quaternion.identity);
 				Destroy(gameObject);
-
-			
 				
 			}
 		}

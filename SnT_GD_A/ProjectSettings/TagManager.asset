@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - Enemy
   - Timer
+  - GameOverCanvas
+  - Score
   layers:
   - Default
   - TransparentFX
