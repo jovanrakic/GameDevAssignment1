@@ -132,7 +132,7 @@ public class SimpleFSMFreeze : MonoBehaviour
         nav.SetDestination(playerTransform.transform.position);
         nav.isStopped = false;
 
-        Debug.Log(Vector3.Distance(transform.position, playerTransform.transform.position));
+        //Debug.Log(Vector3.Distance(transform.position, playerTransform.transform.position));
 
         // Transitions
         // Check the distance with player tank
@@ -207,7 +207,6 @@ public class SimpleFSMFreeze : MonoBehaviour
 			if ((bulletSpawnPoint) & (bullet)) {
             	// Shoot the bullet
             	Instantiate(bullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
-                Debug.Log("Shot! 2");
 			}
             elapsedTime = 0.0f;
         }
