@@ -33,10 +33,7 @@ public class EnemyBulletFreeze : MonoBehaviour
 				transform.position = hit.point;
 				if (Explosion)
 					Instantiate(Explosion, hit.point, Quaternion.identity);
-				Destroy(gameObject);
-
-			
-				
+				Destroy(gameObject);				
 			}
 		}
 		else

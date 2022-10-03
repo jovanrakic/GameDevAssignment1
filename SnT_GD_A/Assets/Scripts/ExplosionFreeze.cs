@@ -29,9 +29,11 @@ public class ExplosionFreeze : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Bullet hit");
         if (other.gameObject.tag == "Player") {
             player.MoveSpeed = 0.0f;
             player.SprintSpeed = 0.0f;
+            Debug.Log("Player hit! movementspeed is now: " + player.MoveSpeed + " Sprintspeed is now: " + player.SprintSpeed);
         }
     }
 }

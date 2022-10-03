@@ -4892,9 +4892,9 @@ GameObject:
   m_Component:
   - component: {fileID: 443653445314069266}
   - component: {fileID: 443653445314069268}
-  - component: {fileID: 1151508603010321528}
   - component: {fileID: 7105676585907048413}
   - component: {fileID: -1958578250635556929}
+  - component: {fileID: 3994028846938151860}
   m_Layer: 0
   m_Name: FX_Explosion_Blue_Freeze
   m_TagString: Untagged
@@ -4943,19 +4943,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1151508603010321528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443653445314069269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e85fbf46750007745a1ee04e8b9374ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: {fileID: 0}
 --- !u!135 &7105676585907048413
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4985,6 +4972,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3994028846938151860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443653445314069269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2762be5e2a871d44e84543d2953b266e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  freezeTime: 2
 --- !u!1 &443653445637789877
 GameObject:
   m_ObjectHideFlags: 0

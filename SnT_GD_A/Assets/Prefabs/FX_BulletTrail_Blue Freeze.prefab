@@ -24191,7 +24191,7 @@ GameObject:
   - component: {fileID: 4868999187517079738}
   - component: {fileID: -5867191244887265475}
   - component: {fileID: -8809755262310416864}
-  - component: {fileID: -284160881315843195}
+  - component: {fileID: 5091649749595318720}
   m_Layer: 0
   m_Name: FX_BulletTrail_Blue Freeze
   m_TagString: Untagged
@@ -24248,7 +24248,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-284160881315843195
+--- !u!114 &5091649749595318720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24257,11 +24257,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7624496878921423553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10ad1260a244af8409b90b081ba954e4, type: 3}
+  m_Script: {fileID: 11500000, guid: dee7db0f8fcf10d4f91ba881e445eda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Explosion: {fileID: 443653445314069269, guid: 7e3e8e2f6ecdbb04a982af0a14f2d887, type: 3}
-  speed: 50
+  Explosion: {fileID: 443653445314069269, guid: 2986853f1493ad54dba1ca0c0e3a3e20, type: 3}
+  speed: 300
   lifeTime: 3
   damage: 50
-  timer: {fileID: 0}

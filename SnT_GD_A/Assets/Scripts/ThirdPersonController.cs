@@ -158,6 +158,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Debug.Log("MS: " + MoveSpeed + "SS: " + SprintSpeed);
         }
 
         private void LateUpdate()

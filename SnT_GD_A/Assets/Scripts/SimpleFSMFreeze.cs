@@ -207,6 +207,7 @@ public class SimpleFSMFreeze : MonoBehaviour
 			if ((bulletSpawnPoint) & (bullet)) {
             	// Shoot the bullet
             	Instantiate(bullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+                Debug.Log("Shot! 2");
 			}
             elapsedTime = 0.0f;
         }
