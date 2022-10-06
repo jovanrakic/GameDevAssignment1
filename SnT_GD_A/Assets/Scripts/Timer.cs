@@ -22,6 +22,14 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update(){
         if (!gameWon){
+        if (coolDown == true){
+            if (damageTimer < 2){
+               damageTimer += Time.deltaTime;
+                    } else {
+                        coolDown = false;
+                        damageTimer = 0;
+                    }
+                }
             if (curTime > 0){
                 curTime -= Time.deltaTime;
             }
@@ -29,14 +37,7 @@ public class Timer : MonoBehaviour
                 curTime = 0;
                 gameOverCanvas.SetActive(true);
         
-                if (coolDown == true){
-                    if (damageTimer < 2){
-                        damageTimer += Time.deltaTime;
-                    } else {
-                        coolDown = false;
-                        damageTimer = 0;
-                    }
-                }
+
                 if (gameOverTimer < 5) {
                     gameOverTimer += Time.deltaTime;
                 } 
