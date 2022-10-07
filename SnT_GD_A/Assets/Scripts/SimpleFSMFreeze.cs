@@ -69,8 +69,7 @@ public class SimpleFSMFreeze : MonoBehaviour
         
         remainingEnemies = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScore>();
 
-//        RigBod = GetComponent<Rigidbody>();
-//        RigBod.AddForce(1,1,1,ForceMode.Impulse);
+
 
         if(!playerTransform)
             print("Player doesn't exist.. Please add one with Tag named 'Player'");
@@ -224,7 +223,7 @@ public class SimpleFSMFreeze : MonoBehaviour
     }
 
     // Apply Damage if hit by bullet
-    public void ApplyDamage(int damage ) {
+    public void ApplyDamage(int damage) {
     	health -= damage;
         Debug.Log("enemy hit! health is now at: " + health);
     }

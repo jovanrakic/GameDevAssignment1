@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using StarterAssets;
+using UnityEngine.SceneManagement;
 
 public class ThirdPersonShootingController : MonoBehaviour{
 
@@ -25,9 +26,14 @@ public class ThirdPersonShootingController : MonoBehaviour{
 		starterAssetsInputs = GetComponent<StarterAssetsInputs>();
 		thirdPersonController = GetComponent<ThirdPersonController>();
 		laser_01 = GetComponent<AudioSource>();
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 
 	private void Update() {
+		if (Input.GetKeyDown("escape")){
+			SceneManager.LoadScene("TitlePage");
+		}
 		Vector3 mouseWorldPosition = Vector3.zero;
 		Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
 		Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
