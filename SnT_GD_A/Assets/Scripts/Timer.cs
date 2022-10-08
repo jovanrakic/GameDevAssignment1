@@ -74,7 +74,7 @@ public class Timer : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
     public void ApplyRewardPickup(){
-        curTime += 30;
+        curTime += 60;
     }
 
     public void TakeDamage() {

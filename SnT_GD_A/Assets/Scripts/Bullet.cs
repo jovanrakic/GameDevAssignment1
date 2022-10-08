@@ -38,10 +38,14 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.tag == "Enemy") {
             Instantiate(enemyImpact, transform.position, transform.rotation);
             if (isFreeze){
-                enemy_freeze.ApplyDamage(10);
+                if (enemy_freeze != null){
+                    enemy_freeze.ApplyDamage(10);
+                }
             }
             else{
-                enemy.ApplyDamage(10);
+                if (enemy !=null){
+                    enemy.ApplyDamage(10);
+                }
             }
         } 
         else {

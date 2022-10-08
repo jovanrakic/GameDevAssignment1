@@ -1138,7 +1138,7 @@ MonoBehaviour:
   bullet: {fileID: 947250871755532473, guid: 473d079eb020ad24184a63656bf54144, type: 3}
   bulletSpawnPoint: {fileID: 1572536890}
   shootRate: 3
-  health: 100
+  health: 150
   chaseRange: 35
   attackRange: 20
   attackRangeStop: 10
