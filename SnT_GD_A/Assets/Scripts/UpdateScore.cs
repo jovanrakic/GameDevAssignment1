@@ -11,7 +11,7 @@ public class UpdateScore : MonoBehaviour
     public Text gameWonText;
     public Text timeText; 
 
-    private float enemiesLeft = 1;
+    private float enemiesLeft = 5;
     private float timeUsed = 0;
     private float min;
     private float sec;
