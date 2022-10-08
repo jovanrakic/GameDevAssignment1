@@ -46,6 +46,9 @@ public class SimpleFSM : MonoBehaviour
 	public float attackRange = 20.0f;
 	public float attackRangeStop = 10.0f;
 
+    public float pathCheckTime = 1.0f;
+    private float elapsedPathCheckTime;
+
 	public GameObject explosion;
     public UpdateScore remainingEnemies;
 
@@ -70,6 +73,8 @@ public class SimpleFSM : MonoBehaviour
         if(!playerTransform)
             print("Player doesn't exist.. Please add one with Tag named 'Player'");
 
+        elapsedPathCheckTime = pathCheckTime;
+
 	}
 
 
@@ -85,6 +90,7 @@ public class SimpleFSM : MonoBehaviour
         
         // Update the time
         elapsedTime += Time.deltaTime;
+        elapsedPathCheckTime += Time.deltaTime;
         
         // Go to dead state if no health left
         if (health <= 0){
@@ -98,9 +104,19 @@ public class SimpleFSM : MonoBehaviour
     protected void UpdatePatrolState() {
 
         // NavMeshAgent move code goes here
-        nav = GetComponent<NavMeshAgent>();
-        nav.SetDestination(waypointList[currentWaypoint].transform.position);
-        nav.isStopped = false;
+        nav = GetComponent<NavMeshAgent>(); 
+        if (elapsedPathCheckTime >= pathCheckTime){
+            nav.SetDestination(waypointList[currentWaypoint].transform.position);// Updating too much, half a second wait
+            elapsedPathCheckTime = 0f;
+            nav.isStopped = false;
+        }
+
+                    // Transitions
+            // Check the distance with player
+            // When the distance is near, transition to chase state
+        if (Vector3.Distance(transform.position, playerTransform.position) <= chaseRange) { // place above line 104
+            curState = FSMState.Chase;
+        }
         if (Vector3.Distance(transform.position, waypointList[currentWaypoint].transform.position) <= 1)
         {
             if (currentWaypoint < 3)
@@ -114,12 +130,7 @@ public class SimpleFSM : MonoBehaviour
         
         }
 
-            // Transitions
-            // Check the distance with player
-            // When the distance is near, transition to chase state
-            if (Vector3.Distance(transform.position, playerTransform.position) <= chaseRange) {
-            curState = FSMState.Chase;
-        }
+
 
         Quaternion enemyRotation = Quaternion.LookRotation(waypointList[currentWaypoint].transform.position - transform.position);
         enemyBody.transform.rotation = Quaternion.Slerp(enemyBody.transform.rotation, enemyRotation, Time.deltaTime * enemyBodyRotSpeed);
@@ -133,8 +144,12 @@ public class SimpleFSM : MonoBehaviour
 
         // NavMeshAgent move code goes here
         nav = GetComponent<NavMeshAgent>();
-        nav.SetDestination(playerTransform.transform.position);
-        nav.isStopped = false;
+        if (elapsedPathCheckTime >= pathCheckTime){
+            nav.SetDestination(playerTransform.transform.position);
+            elapsedPathCheckTime = 0f;
+            nav.isStopped = false;
+        }
+
 
         //Debug.Log(Vector3.Distance(transform.position, playerTransform.transform.position));
 
@@ -161,8 +176,12 @@ public class SimpleFSM : MonoBehaviour
         if (Vector3.Distance(transform.position, playerTransform.transform.position) > attackRangeStop)
         {
             nav = GetComponent<NavMeshAgent>();
-            nav.SetDestination(playerTransform.transform.position);
-            nav.isStopped = false;
+            if (elapsedPathCheckTime >= pathCheckTime){
+                nav.SetDestination(playerTransform.transform.position);
+                elapsedPathCheckTime = 0f;
+                nav.isStopped = false;
+            }
+
         }
         else
         {
