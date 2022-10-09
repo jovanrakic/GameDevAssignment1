@@ -10,6 +10,9 @@ public class TitlePage : MonoBehaviour {
     public void LoadLevel (string levelName) {
         SceneManager.LoadScene(levelName);
     }
+    public void ShowHelp(){
+        SceneManager.LoadScene("Help");
+    }
 
     public void QuitGame() {
         Application.Quit ();
