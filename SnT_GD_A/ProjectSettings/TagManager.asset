@@ -9,6 +9,8 @@ TagManager:
   - Timer
   - GameOverCanvas
   - Score
+  - PlayerBody
+  - MusicControl
   layers:
   - Default
   - TransparentFX

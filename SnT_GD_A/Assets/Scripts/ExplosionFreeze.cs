@@ -8,10 +8,12 @@ public class ExplosionFreeze : MonoBehaviour
     public ThirdPersonController player;
     public float freezeTime = 2.0f;
     public bool isHit = false;
+    AudioSource magic_03;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player = GameObject.FindGameObjectWithTag("PlayerBody").GetComponent<ThirdPersonController>();
+        magic_03 = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -34,10 +36,11 @@ public class ExplosionFreeze : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "PlayerBody") {
             player.MoveSpeed = 0.0f;
             player.SprintSpeed = 0.0f;
             isHit = true;
+            magic_03.Play();
         }
     }
 }

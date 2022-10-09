@@ -52,7 +52,7 @@ public class SimpleFSM : MonoBehaviour
 	public GameObject explosion;
     public UpdateScore remainingEnemies;
 
-    //AudioSource magic_03;
+    AudioSource magic_03;
 
 
     /*
@@ -60,7 +60,7 @@ public class SimpleFSM : MonoBehaviour
      */
 	void Start() {
 
-       // magic_03 = GetComponent<AudioSource>();
+        
         curState = FSMState.Patrol;
 
         bDead = false;
@@ -274,6 +274,7 @@ public class SimpleFSM : MonoBehaviour
 	protected void CreateFinalExplosion() {
 		if (explosion) 
 			Instantiate(explosion, transform.position, transform.rotation);
+
 	}
 
 

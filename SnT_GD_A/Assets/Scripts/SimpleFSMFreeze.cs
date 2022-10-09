@@ -46,8 +46,13 @@ public class SimpleFSMFreeze : MonoBehaviour
 	public float attackRange = 30.0f;
 	public float attackRangeStop = 10.0f;
 
+    public float pathCheckTime = 1.0f;
+    private float elapsedPathCheckTime;
+
 	public GameObject explosion;
     public UpdateScore remainingEnemies;
+
+    AudioSource magic_03;
 
     // public Rigidbody RigBod;
 
@@ -74,6 +79,8 @@ public class SimpleFSMFreeze : MonoBehaviour
         if(!playerTransform)
             print("Player doesn't exist.. Please add one with Tag named 'Player'");
 
+         elapsedPathCheckTime = pathCheckTime;
+
 	}
 
 
@@ -89,6 +96,7 @@ public class SimpleFSMFreeze : MonoBehaviour
         
         // Update the time
         elapsedTime += Time.deltaTime;
+        elapsedPathCheckTime += Time.deltaTime;
 
         // Go to dead state if no health left
         if (health <= 0){
@@ -103,9 +111,19 @@ public class SimpleFSMFreeze : MonoBehaviour
     protected void UpdatePatrolState() {
 
         // NavMeshAgent move code goes here
-        nav = GetComponent<NavMeshAgent>();
-        nav.SetDestination(waypointList[currentWaypoint].transform.position);
-        nav.isStopped = false;
+        nav = GetComponent<NavMeshAgent>(); 
+        if (elapsedPathCheckTime >= pathCheckTime){
+            nav.SetDestination(waypointList[currentWaypoint].transform.position);// Updating too much, half a second wait
+            elapsedPathCheckTime = 0f;
+            nav.isStopped = false;
+        }
+
+                    // Transitions
+            // Check the distance with player
+            // When the distance is near, transition to chase state
+        if (Vector3.Distance(transform.position, playerTransform.position) <= chaseRange) {
+            curState = FSMFState.Chase;
+        }
         if (Vector3.Distance(transform.position, waypointList[currentWaypoint].transform.position) <= 1)
         {
             if (currentWaypoint < 3)
@@ -119,12 +137,7 @@ public class SimpleFSMFreeze : MonoBehaviour
         
         }
 
-            // Transitions
-            // Check the distance with player
-            // When the distance is near, transition to chase state
-            if (Vector3.Distance(transform.position, playerTransform.position) <= chaseRange) {
-            curState = FSMFState.Chase;
-        }
+
 
         Quaternion enemyRotation = Quaternion.LookRotation(waypointList[currentWaypoint].transform.position - transform.position);
         enemyBody.transform.rotation = Quaternion.Slerp(enemyBody.transform.rotation, enemyRotation, Time.deltaTime * enemyBodyRotSpeed);
@@ -137,9 +150,23 @@ public class SimpleFSMFreeze : MonoBehaviour
     protected void UpdateChaseState() {
 
         // NavMeshAgent move code goes here
-        nav = GetComponent<NavMeshAgent>();
-        nav.SetDestination(playerTransform.transform.position);
-        nav.isStopped = false;
+        Vector3 playerPosition = new Vector3(playerTransform.transform.position.x,0, playerTransform.transform.position.z);
+        if (Vector3.Distance(transform.position, playerPosition) > attackRangeStop)
+        {
+            nav = GetComponent<NavMeshAgent>();
+            if (elapsedPathCheckTime >= pathCheckTime){
+                nav.SetDestination(playerPosition);
+                elapsedPathCheckTime = 0f;
+                //nav.isStopped = false;
+            }
+
+        }
+        else
+        {
+            //nav.isStopped = true; //SetDestination to current - curState = Chasestate; return;
+            nav.SetDestination(gameObject.transform.position);
+        }
+
 
         //Debug.Log(Vector3.Distance(transform.position, playerTransform.transform.position));
 
@@ -163,20 +190,26 @@ public class SimpleFSMFreeze : MonoBehaviour
 	 */
     protected void UpdateAttackState() {
 
-        if (Vector3.Distance(transform.position, playerTransform.transform.position) > attackRangeStop)
+        Vector3 playerPosition = new Vector3(playerTransform.transform.position.x,0, playerTransform.transform.position.z);
+        if (Vector3.Distance(transform.position, playerPosition) > attackRangeStop)
         {
             nav = GetComponent<NavMeshAgent>();
-            nav.SetDestination(playerTransform.transform.position);
-            nav.isStopped = false;
+            if (elapsedPathCheckTime >= pathCheckTime){
+                nav.SetDestination(playerPosition);
+                elapsedPathCheckTime = 0f;
+                //nav.isStopped = false;
+            }
+
         }
         else
         {
-            nav.isStopped = true;
+            //nav.isStopped = true; //SetDestination to current - curState = Chasestate; return;
+            nav.SetDestination(gameObject.transform.position);
         }
 
         // Transitions
         // Check the distance with the player 
-        float dist = Vector3.Distance(transform.position, playerTransform.position);
+        float dist = Vector3.Distance(transform.position, playerPosition);
 		if (dist > attackRange) {
 			curState = FSMFState.Chase;
 		}
