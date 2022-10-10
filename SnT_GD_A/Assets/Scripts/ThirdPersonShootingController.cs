@@ -16,7 +16,7 @@ public class ThirdPersonShootingController : MonoBehaviour{
 
 
 	AudioSource laser_01;
-	private bool aiming = false;// Aiming is set to false by default
+	public bool aiming = false;// Aiming is set to false by default
 	
 
 	private StarterAssetsInputs starterAssetsInputs;// Detect player Input
@@ -62,11 +62,10 @@ public class ThirdPersonShootingController : MonoBehaviour{
 			thirdPersonController.RotateOnAim(true);
 		}
 		// If aim is true and shoot is triggered, spawn a bullet
-		if (starterAssetsInputs.shoot && aiming == true){
+		if (Input.GetMouseButtonDown(0) && aiming == true){
 			laser_01.Play();
 			Vector3 aimDir =(mouseWorldPosition - bulletSpawnPoint.position).normalized;
 			Instantiate(bulletProjectile, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
-			starterAssetsInputs.shoot = false;
 		}
 
 		
