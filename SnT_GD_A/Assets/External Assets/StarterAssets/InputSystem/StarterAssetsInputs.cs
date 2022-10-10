@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		// Setting bool to aim and shoot
 		public bool aim;
 		public bool shoot;
 
@@ -40,17 +41,17 @@ namespace StarterAssets
 		{
 			JumpInput(value.isPressed);
 		}
-
+		// Setting shoot input value
 		public void OnShoot(InputValue value)
 		{
 			ShootInput(value.isPressed);
 		}
-
+		
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
 		}
-
+		// Setting aim input value
 		public void OnAim(InputValue value)
 		{
 			AimInput(value.isPressed);
@@ -72,7 +73,7 @@ namespace StarterAssets
 		{
 			jump = newJumpState;
 		}
-
+		// Setting new shoot state
 		public void ShootInput(bool newShootState)
 		{
 			shoot = newShootState;
@@ -82,7 +83,7 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-
+		// Setting new aim state
 		public void AimInput(bool newAimState)
 		{
 			aim = newAimState;

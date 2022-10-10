@@ -24,8 +24,6 @@ public class SimpleFSMFreeze : MonoBehaviour
     public GameObject[] waypointList;
     public int currentWaypoint = 0;
     // Enemy body
-   // public GameObject turret;
-	//public float turretRotSpeed = 4.0f;
     public GameObject enemyBody;
 	public float enemyBodyRotSpeed = 4.0f;
 	
@@ -45,16 +43,17 @@ public class SimpleFSMFreeze : MonoBehaviour
 	public float chaseRange = 60.0f;
 	public float attackRange = 30.0f;
 	public float attackRangeStop = 10.0f;
-
+    // Timer to check enemies path
     public float pathCheckTime = 1.0f;
     private float elapsedPathCheckTime;
-
+    // Explosion prefab
 	public GameObject explosion;
+    // Remaining enemy count
     public UpdateScore remainingEnemies;
-
+    // Audio source for enemy attack
     AudioSource magic_03;
 
-    // public Rigidbody RigBod;
+    
 
 
     /*
@@ -62,7 +61,7 @@ public class SimpleFSMFreeze : MonoBehaviour
      */
 	void Start() {
 
-
+        // Setting the default state to Patrol
         curState = FSMFState.Patrol;
 
         bDead = false;
@@ -86,6 +85,7 @@ public class SimpleFSMFreeze : MonoBehaviour
 
     // Update each frame
     void Update() {
+        // Check the current state at each frame
         switch (curState) {
             case FSMFState.Patrol: UpdatePatrolState(); break;
             case FSMFState.Chase: UpdateChaseState(); break;
@@ -110,7 +110,7 @@ public class SimpleFSMFreeze : MonoBehaviour
      */
     protected void UpdatePatrolState() {
 
-        // NavMeshAgent move code goes here
+        // Setting the destination to waypoints
         nav = GetComponent<NavMeshAgent>(); 
         if (elapsedPathCheckTime >= pathCheckTime){
             nav.SetDestination(waypointList[currentWaypoint].transform.position);// Updating too much, half a second wait
@@ -118,12 +118,13 @@ public class SimpleFSMFreeze : MonoBehaviour
             nav.isStopped = false;
         }
 
-                    // Transitions
-            // Check the distance with player
-            // When the distance is near, transition to chase state
+        // Transitions
+        // Check the distance with player
+        // When the distance is near, transition to chase state
         if (Vector3.Distance(transform.position, playerTransform.position) <= chaseRange) {
             curState = FSMFState.Chase;
         }
+        // Update waypoint if enemy reaches destination
         if (Vector3.Distance(transform.position, waypointList[currentWaypoint].transform.position) <= 1)
         {
             if (currentWaypoint < 3)
@@ -138,7 +139,7 @@ public class SimpleFSMFreeze : MonoBehaviour
         }
 
 
-
+        // Enemy rotation
         Quaternion enemyRotation = Quaternion.LookRotation(waypointList[currentWaypoint].transform.position - transform.position);
         enemyBody.transform.rotation = Quaternion.Slerp(enemyBody.transform.rotation, enemyRotation, Time.deltaTime * enemyBodyRotSpeed);
     }
@@ -149,7 +150,7 @@ public class SimpleFSMFreeze : MonoBehaviour
 	 */
     protected void UpdateChaseState() {
 
-        // NavMeshAgent move code goes here
+        // Sets the destination to the player
         Vector3 playerPosition = new Vector3(playerTransform.transform.position.x,0, playerTransform.transform.position.z);
         if (Vector3.Distance(transform.position, playerPosition) > attackRangeStop)
         {
@@ -157,18 +158,15 @@ public class SimpleFSMFreeze : MonoBehaviour
             if (elapsedPathCheckTime >= pathCheckTime){
                 nav.SetDestination(playerPosition);
                 elapsedPathCheckTime = 0f;
-                //nav.isStopped = false;
             }
 
         }
-        else
+        else // Set destination to enemies current position
         {
-            //nav.isStopped = true; //SetDestination to current - curState = Chasestate; return;
             nav.SetDestination(gameObject.transform.position);
         }
 
 
-        //Debug.Log(Vector3.Distance(transform.position, playerTransform.transform.position));
 
         // Transitions
         // Check the distance with player tank
@@ -189,7 +187,7 @@ public class SimpleFSMFreeze : MonoBehaviour
 	 * Attack state
 	 */
     protected void UpdateAttackState() {
-
+        // Sets the destination to player
         Vector3 playerPosition = new Vector3(playerTransform.transform.position.x,0, playerTransform.transform.position.z);
         if (Vector3.Distance(transform.position, playerPosition) > attackRangeStop)
         {
@@ -197,13 +195,11 @@ public class SimpleFSMFreeze : MonoBehaviour
             if (elapsedPathCheckTime >= pathCheckTime){
                 nav.SetDestination(playerPosition);
                 elapsedPathCheckTime = 0f;
-                //nav.isStopped = false;
             }
 
         }
-        else
+        else // Sets the destination to its current position
         {
-            //nav.isStopped = true; //SetDestination to current - curState = Chasestate; return;
             nav.SetDestination(gameObject.transform.position);
         }
 
@@ -213,7 +209,7 @@ public class SimpleFSMFreeze : MonoBehaviour
 		if (dist > attackRange) {
 			curState = FSMFState.Chase;
 		}
-        // Transition to patrol if the tank is too far
+        // Transition to patrol if the player is too far
         else if (dist >= chaseRange) {
 			curState = FSMFState.Patrol;
 		}
@@ -261,7 +257,7 @@ public class SimpleFSMFreeze : MonoBehaviour
         Debug.Log("enemy hit! health is now at: " + health);
     }
 
-
+    // Explosion for when enemy is dead
     protected void Explode() {
         float rndX = Random.Range(8.0f, 12.0f);
         float rndZ = Random.Range(8.0f, 12.0f);
@@ -270,19 +266,19 @@ public class SimpleFSMFreeze : MonoBehaviour
             GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(rndX, 10.0f, rndZ));
         }
 
-
+        // Spawn the explosion
 		Invoke ("CreateFinalExplosion", 1.4f);
 		Destroy(gameObject, 1.5f);
         remainingEnemies.KilledEnemy();
 	}
 	
-	
+	// Spawn the explosion
 	protected void CreateFinalExplosion() {
 		if (explosion) 
 			Instantiate(explosion, transform.position, transform.rotation);
 	}
 
-
+    // Draw editor gizmos
 	void OnDrawGizmos () {
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(transform.position, chaseRange);

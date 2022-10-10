@@ -18,13 +18,13 @@ public class RewardPickup : MonoBehaviour
         transform.Rotate(rotation);
         // rotation is a Vector3 (X,Y,Z) of the amount to rotate per update in degrees  
     }
-
+    // Detect is object with "Player" tage colliders with other collider
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-        {
+        { // Calling the reward fucntion from timer script
             GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().ApplyRewardPickup();
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroys game object if true
         }
       
     }

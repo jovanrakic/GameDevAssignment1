@@ -14,6 +14,7 @@ public class CreditPage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    // Exit to titlePage when escape is pressed
     if (Input.GetKeyDown("escape")){
         SceneManager.LoadScene("TitlePage");
         }  

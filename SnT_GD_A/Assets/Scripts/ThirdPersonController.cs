@@ -106,7 +106,7 @@ namespace StarterAssets
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
-        private bool rotationOnAim = true;
+        private bool rotationOnAim = true; // Setting the rotationOnAim state to true
         private bool _hasAnimator;
 
         private bool IsCurrentDeviceMouse
@@ -388,7 +388,7 @@ namespace StarterAssets
                 }
             }
         }
-
+        // Setting the new Rotate on aim state
         public void RotateOnAim(bool newRotateOnAim)
         {
             rotationOnAim = newRotateOnAim;

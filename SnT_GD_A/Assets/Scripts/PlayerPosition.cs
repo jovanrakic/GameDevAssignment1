@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerPosition : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject player;
+    public GameObject player; 
     void Start()
     {
         
@@ -14,6 +14,7 @@ public class PlayerPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Grabbing players X and Z position and keeping y as 0
         transform.position = new Vector3(player.transform.position.x,0, player.transform.position.z);
     }
 }
