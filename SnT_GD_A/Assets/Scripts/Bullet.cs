@@ -13,12 +13,13 @@ public class Bullet : MonoBehaviour
     public GameObject generalImpact;
     void Awake()
     {
-	bulletRigidbody= GetComponent<Rigidbody>();
+	    bulletRigidbody= GetComponent<Rigidbody>();
 
     }
 
     void Start()
     {
+        //Set speed for transform movement and move transform forward
 	    bulletRigidbody.velocity = transform.forward *speed;
     }
     
@@ -26,15 +27,20 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         GameObject enemyObject = other.gameObject;
+        // Check if object collide with an actual object
         if (enemyObject != null)
         {
+            //retrieve enemy fsm script
             enemy = enemyObject.GetComponent<SimpleFSM>();
+            //check if normal or freeze enemy
             if (enemy == null)
             {
                 enemy_freeze = enemyObject.GetComponent<SimpleFSMFreeze>();
                 isFreeze = true;
             }
         }
+
+        //If object is enemy
         if (other.gameObject.tag == "Enemy") {
             Instantiate(enemyImpact, transform.position, transform.rotation);
             if (isFreeze){
@@ -51,6 +57,7 @@ public class Bullet : MonoBehaviour
         else {
             Instantiate(generalImpact, transform.position, transform.rotation);
         }
+    //destroy bullet
     Destroy(gameObject);
     }
 }
