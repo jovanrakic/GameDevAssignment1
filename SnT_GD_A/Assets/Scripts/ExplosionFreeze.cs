@@ -36,11 +36,12 @@ public class ExplosionFreeze : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
+    magic_03.Play();
         if (other.gameObject.tag == "PlayerBody") {
             player.MoveSpeed = 0.0f;
             player.SprintSpeed = 0.0f;
             isHit = true;
-            magic_03.Play();
+            
         }
     }
 }
