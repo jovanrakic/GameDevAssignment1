@@ -17,7 +17,7 @@ public class UpdateScore : MonoBehaviour
     private float min;
     private float sec;
     private float miliSec;
-    private float mainMenuTimer = 5;
+    private float mainMenuTimer = 10;
 
     void Start()
     {

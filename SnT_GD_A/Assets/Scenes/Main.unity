@@ -7605,11 +7605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: chaseRange
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRange
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: waypointList.Array.size
@@ -14081,7 +14081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: chaseRange
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRange
@@ -15415,15 +15415,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: chaseRange
-      value: 15
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRange
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRangeStop
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: waypointList.Array.size
@@ -17045,7 +17045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: chaseRange
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRange
@@ -26958,6 +26958,7 @@ MonoBehaviour:
   debugTransform: {fileID: 9857877}
   bulletProjectile: {fileID: 7861637215802731748, guid: 0396384f99ff0e0458e7b1c403fbdff1, type: 3}
   bulletSpawnPoint: {fileID: 1196345654}
+  aiming: 0
 --- !u!95 &954496237 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6982812146204527121, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
@@ -29087,9 +29088,9 @@ MonoBehaviour:
   miliSec: 0
   remainingTime: {fileID: 1025751716}
   totalTime: {fileID: 513984274}
+  timeUsed: 0
   gameOverCanvas: {fileID: 1667134265}
   gameWonCanvas: {fileID: 232204377}
-  timeUsed: 0
 --- !u!1001 &1026221388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36097,7 +36098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: chaseRange
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRange
@@ -51462,7 +51463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: chaseRange
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRange
@@ -59832,11 +59833,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: chaseRange
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: attackRange
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 968179439, guid: 45e99415f7c19dc4e92b2e6aa30963d6, type: 3}
       propertyPath: waypointList.Array.size
